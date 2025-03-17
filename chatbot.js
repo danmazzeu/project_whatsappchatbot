@@ -2,7 +2,6 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
-const express = require('express');
 
 const { blockCall } = require('./repositories/callBlocker');
 const { reactToMessage } = require('./repositories/reactHandler');
@@ -10,15 +9,26 @@ const sendMedia = require('./repositories/sendMedia');
 const { transferToAttendant } = require('./repositories/transferToAttendant');
 const checkAndHandleBadWords = require('./repositories/containsBadWords');
 
-// Função para gerar o QR Code e retorná-lo para o frontend
-const generateQrCode = (qr, res) => {
-    console.log('Escaneie este QR Code para conectar-se ao WhatsApp');
-    QRCode.toDataURL(qr, (err, url) => {
+// Função para salvar o QR Code
+const saveQrCode = (qr) => {
+    const qrCodeFolder = path.join(__dirname, 'qrcode');
+    if (!fs.existsSync(qrCodeFolder)) {
+        fs.mkdirSync(qrCodeFolder);
+    }
+
+    const qrFilePath = path.join(qrCodeFolder, 'qrcode.png');
+
+    // Verificar se o arquivo QR já existe e removê-lo antes de criar um novo
+    if (fs.existsSync(qrFilePath)) {
+        fs.unlinkSync(qrFilePath); // Remove o arquivo existente
+    }
+
+    QRCode.toFile(qrFilePath, qr, { type: 'png' }, (err) => {
         if (err) {
-            console.error('Erro ao gerar o QR Code:', err);
-            return;
+            console.error('Erro ao salvar o QR Code:', err);
+        } else {
+            console.log(`QR Code salvo em: ${qrFilePath}`);
         }
-        res.send(`<h1>Escaneie o QR Code para conectar</h1><img src="${url}" alt="QR Code" />`);
     });
 };
 
@@ -26,7 +36,7 @@ const generateQrCode = (qr, res) => {
 const clearOldFolders = () => {
     const foldersToDelete = [
         path.join(__dirname, './.wwebjs_auth'),
-        path.join(__dirname, './app/qrcode'),
+        path.join(__dirname, './qrcode'),
         path.join(__dirname, './.wwebjs_cache')
     ];
 
@@ -49,9 +59,8 @@ const startBot = () => {
     });
 
     client.on('qr', (qr) => {
-        // Aqui, ao invés de salvar o QR Code, enviamos ele para o frontend
-        // Passamos o objeto `res` do Express para a função de geração do QR Code
-        generateQrCode(qr, res);
+        console.log('Escaneie este QR Code para conectar-se ao WhatsApp');
+        saveQrCode(qr);
     });
 
     client.on('ready', () => {
@@ -209,16 +218,5 @@ const startBot = () => {
     });
 };
 
-// Criação do servidor Express
-const app = express();
-
-// Endpoint para iniciar o bot via requisição GET
-app.get('/', (req, res) => {
-    startBot();
-    res.send('Bot iniciado com sucesso!');
-});
-
-// Inicia o servidor na porta 3000
-app.listen(3000, () => {
-    console.log('Servidor rodando na porta 3000');
-});
+// Inicia o bot
+startBot();
