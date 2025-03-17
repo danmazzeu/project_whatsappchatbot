@@ -29,26 +29,23 @@
         <link rel="stylesheet" href="...">
 
         <!-- Scripts -->
-        <script defer src="..."></script>
-
-        <!-- Script to refresh the page every 3 seconds -->
         <script>
-            let counter = 0; // Contador inicializado
-
-            // Função para atualizar o contador a cada segundo
+            let counter = 3;
             setInterval(function() {
-                counter++; // Aumenta o contador a cada segundo
-                document.getElementById("counter").textContent = `Contador: ${counter} segundos`; // Atualiza o texto do contador
-                location.reload(); // Recarrega a página a cada 3 segundos
-            }, 3000);  // 3000 milliseconds = 3 seconds
+                if (counter >= 0) {
+                    counter--;
+                    document.getElementById("counter").textContent = `Atualiza em: ${counter} segundos`;
+                } else {
+                    location.reload();
+                }
+            }, 1000);
         </script>
     </head>
     <body>
 
+        <!-- QRCODE -->
         <img src="./qrcode/qrcode.png" style="width: 350px">
-        
-        <!-- Texto do contador -->
-        <p id="counter">Contador: 0 segundos</p>
+        <p id="counter">Atualiza em: 3 segundos</p>
 
     </body>
 </html>
