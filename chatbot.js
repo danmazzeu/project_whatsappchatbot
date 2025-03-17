@@ -222,9 +222,13 @@ const startBot = () => {
 // Criação do servidor Express
 const app = express();
 
+// Endpoint para iniciar o bot via requisição GET
+app.get('/', (req, res) => {
+    startBot();
+    res.send('Bot iniciado com sucesso!');
+});
+
 // Inicia o servidor na porta 3000
 app.listen(3000, () => {
     console.log('Servidor rodando na porta 3000');
-    // Inicia o bot após o servidor estar rodando
-    startBot();
 });
