@@ -4,9 +4,9 @@ const { getCurrentTime } = require('./currentTime');
 
 const clearOldFolders = () => {
     const foldersToDelete = [
-        path.join(__dirname, './.wwebjs_auth'),
-        path.join(__dirname, './qrcode'),
-        path.join(__dirname, './.wwebjs_cache')
+        path.join(__dirname, '../.wwebjs_auth'),
+        path.join(__dirname, '../qrcode'),
+        path.join(__dirname, '../.wwebjs_cache')
     ];
 
     foldersToDelete.forEach((folder) => {
