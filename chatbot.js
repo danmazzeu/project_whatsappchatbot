@@ -37,7 +37,7 @@ const saveQrCode = (qr) => {
 const clearOldFolders = () => {
     const foldersToDelete = [
         path.join(__dirname, './.wwebjs_auth'),
-        path.join(__dirname, './qrcode'),
+        path.join(__dirname, './app/qrcode'),
         path.join(__dirname, './.wwebjs_cache')
     ];
 
