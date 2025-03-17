@@ -12,6 +12,8 @@ const menuOptions = require('./repositories/menuOptions');
 
 const startBot = () => {
     clearOldFolders();
+    console.log(`[${getCurrentTime()}] Pastas antigas limpas.`);
+    logMessageToFile(`[${getCurrentTime()}] Pastas antigas limpas.`);
 
     const client = new Client({
         authStrategy: new LocalAuth(),
@@ -21,26 +23,36 @@ const startBot = () => {
     });
 
     client.on('qr', (qr) => {
-        console.log(`[${getCurrentTime()}] Escaneie este QR Code para conectar-se ao WhatsApp`);
+        const qrMessage = `[${getCurrentTime()}] Escaneie este QR Code para conectar-se ao WhatsApp`;
+        console.log(qrMessage);
+        logMessageToFile(qrMessage);
         saveQrCode(qr);
     });
 
     client.on('ready', () => {
-        console.log(`[${getCurrentTime()}] Chatbot WhatsApp está rodando!`);
+        const readyMessage = `[${getCurrentTime()}] Chatbot WhatsApp está rodando!`;
+        console.log(readyMessage);
+        logMessageToFile(readyMessage);
     });
 
     client.on('call', async (call) => {
-        console.log(`[${getCurrentTime()}] Chamada recebida, bloqueando...`);
+        const callMessage = `[${getCurrentTime()}] Chamada recebida, bloqueando...`;
+        console.log(callMessage);
+        logMessageToFile(callMessage);
         await blockCall(call);
     });
 
     client.on('message', async (message) => {
         try {
-            console.log(`[${getCurrentTime()}] Mensagem recebida de ${message.from}: ${message.body}`);
+            const receivedMessage = `[${getCurrentTime()}] Mensagem recebida de ${message.from}: ${message.body}`;
+            console.log(receivedMessage);
+            logMessageToFile(receivedMessage);
 
             const isBlocked = await checkAndHandleBadWords(message, client);
             if (isBlocked) {
-                console.log(`[${getCurrentTime()}] Mensagem bloqueada por conter palavras proibidas.`);
+                const blockedMessage = `[${getCurrentTime()}] Mensagem bloqueada por conter palavras proibidas.`;
+                console.log(blockedMessage);
+                logMessageToFile(blockedMessage);
                 return;
             }
 
@@ -60,17 +72,22 @@ const startBot = () => {
             }
 
             if (resposta) {
-                console.log(`[${getCurrentTime()}] Enviando resposta: ${resposta}`);
+                const responseMessage = `[${getCurrentTime()}] Enviando resposta: ${resposta}`;
+                console.log(responseMessage);
+                logMessageToFile(responseMessage);
                 message.reply(resposta);
-                logMessageToFile(message);
             }
         } catch (err) {
-            console.error(`[${getCurrentTime()}] Erro ao processar a mensagem:`, err);
+            const errorMessage = `[${getCurrentTime()}] Erro ao processar a mensagem: ${err}`;
+            console.error(errorMessage);
+            logMessageToFile(errorMessage);
         }
     });
 
     client.initialize().catch(err => {
-        console.error(`[${getCurrentTime()}] Erro ao inicializar o cliente:`, err);
+        const errorInitializationMessage = `[${getCurrentTime()}] Erro ao inicializar o cliente: ${err}`;
+        console.error(errorInitializationMessage);
+        logMessageToFile(errorInitializationMessage);
     });
 };
 

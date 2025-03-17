@@ -1,23 +1,44 @@
 const fs = require('fs');
 const path = require('path');
-
-const getCurrentTime = () => {
-    const date = new Date();
-    const options = { timeZone: 'America/Sao_Paulo', hour12: false };
-    return date.toLocaleString('pt-BR', options);
-};
+const { getCurrentTime } = require('./currentTime');
 
 const logMessageToFile = (message) => {
-    const logFilePath = path.join(__dirname, '..', 'log.txt');
-    const logEntry = `[${getCurrentTime()}] Mensagem enviada para ${message.from}: ${message.body}\n`;
+    if (typeof message === 'string') {
+        const logEntry = `[${getCurrentTime()}] Mensagem: ${message}\n`;
+        writeLogToFile(logEntry);
+        return;
+    }
 
-    fs.appendFile(logFilePath, logEntry, (err) => {
-        if (err) {
-            console.error(`[${getCurrentTime()}] Erro ao gravar no arquivo de log:`, err);
-        } else {
-            console.log(`[${getCurrentTime()}] Mensagem registrada no arquivo de log.`);
+    if (!message || typeof message !== 'object' || !message.from || !message.body) {
+        console.error(`[${getCurrentTime()}] Erro: Mensagem incompleta (from ou body undefined ou mensagem não é um objeto)`);
+        return;
+    }
+
+    const logEntry = `[${getCurrentTime()}] Mensagem recebida de ${message.from}: ${message.body}\n`;
+    writeLogToFile(logEntry);
+};
+
+const writeLogToFile = (logEntry) => {
+    const logFilePath = path.join(__dirname, '..', 'log.txt');
+    console.log(`[${getCurrentTime()}] Caminho do arquivo de log: ${logFilePath}`);
+    const logDir = path.dirname(logFilePath);
+    
+    if (!fs.existsSync(logDir)) {
+        console.log(`[${getCurrentTime()}] Diretório não existe, criando diretório: ${logDir}`);
+        try {
+            fs.mkdirSync(logDir, { recursive: true });
+        } catch (err) {
+            console.error(`[${getCurrentTime()}] Erro ao criar diretório:`, err);
+            return;
         }
-    });
+    }
+
+    try {
+        fs.appendFileSync(logFilePath, logEntry);
+        console.log(`[${getCurrentTime()}] Mensagem registrada no arquivo de log.`);
+    } catch (err) {
+        console.error(`[${getCurrentTime()}] Erro ao gravar no arquivo de log:`, err);
+    }
 };
 
 module.exports = { logMessageToFile };

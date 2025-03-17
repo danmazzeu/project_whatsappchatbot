@@ -1,2 +1,6 @@
-2025/03/17-13:04:01.678 2af99 Creating DB /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Local Storage/leveldb since it was missing.
-2025/03/17-13:04:01.684 2af99 Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Local Storage/leveldb/MANIFEST-000001
+2025/03/17-13:51:03.067 2e2be Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Local Storage/leveldb/MANIFEST-000001
+2025/03/17-13:51:03.068 2e2be Recovering log #4
+2025/03/17-13:51:03.068 2e2be Reusing old log /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Local Storage/leveldb/000004.log 
+2025/03/17-13:52:04.257 2e2c3 Level-0 table #7: started
+2025/03/17-13:52:04.261 2e2c3 Level-0 table #7: 13447 bytes OK
+2025/03/17-13:52:04.263 2e2c3 Delete type=0 #4

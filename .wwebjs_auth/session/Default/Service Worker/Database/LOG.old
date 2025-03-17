@@ -1,2 +1,3 @@
-2025/03/17-13:04:03.500 2afa7 Creating DB /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Service Worker/Database since it was missing.
-2025/03/17-13:04:03.507 2afa7 Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Service Worker/Database/MANIFEST-000001
+2025/03/17-13:51:03.079 2e2be Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Service Worker/Database/MANIFEST-000001
+2025/03/17-13:51:03.079 2e2be Recovering log #3
+2025/03/17-13:51:03.079 2e2be Reusing old log /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/Service Worker/Database/000003.log 
