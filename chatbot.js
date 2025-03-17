@@ -2,6 +2,7 @@ const { Client, LocalAuth } = require('whatsapp-web.js');
 const fs = require('fs');
 const path = require('path');
 const QRCode = require('qrcode');
+const express = require('express');
 
 const { blockCall } = require('./repositories/callBlocker');
 const { reactToMessage } = require('./repositories/reactHandler');
@@ -218,5 +219,12 @@ const startBot = () => {
     });
 };
 
-// Inicia o bot
-startBot();
+// Criação do servidor Express
+const app = express();
+
+// Inicia o servidor na porta 3000
+app.listen(3000, () => {
+    console.log('Servidor rodando na porta 3000');
+    // Inicia o bot após o servidor estar rodando
+    startBot();
+});
