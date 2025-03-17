@@ -49,7 +49,14 @@ const clearOldFolders = () => {
 };
 
 // Função para iniciar o bot
+let isBotRunning = false; // Garantir que o bot só inicie uma vez
+
 const startBot = () => {
+    if (isBotRunning) {
+        console.log('Bot já está em execução.');
+        return;
+    }
+
     clearOldFolders();
 
     const client = new Client({
@@ -214,6 +221,8 @@ const startBot = () => {
     client.initialize().catch(err => {
         console.error('Erro ao inicializar o cliente:', err);
     });
+
+    isBotRunning = true; // Garantir que o bot está em execução
 };
 
 // Express setup
@@ -221,11 +230,16 @@ const app = express();
 
 // Set up a simple route to start the bot
 app.get('/', (req, res) => {
-    startBot();
+    if (!isBotRunning) {
+        startBot();
+    }
     res.send('WhatsApp Bot is running');
 });
 
+// Use environment variable for port
+const port = process.env.PORT || 3000; // Porta do Railway ou 3000
+
 // Start server
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
