@@ -1,12 +1,14 @@
+const { getCurrentTime } = require('./currentTime');
+
 const blockCall = async (call) => {
     try {
-        console.log('Recebendo chamada...');
+        console.log(`[${getCurrentTime()}] Recebendo chamada...`);
         if (call) {
             await call.reject();
-            console.log('Chamada rejeitada');
+            console.log(`[${getCurrentTime()}] Chamada rejeitada`);
         }
     } catch (error) {
-        console.error('Erro ao rejeitar a chamada:', error);
+        console.error(`[${getCurrentTime()}] Erro ao rejeitar a chamada:`, error);
     }
 };
 
