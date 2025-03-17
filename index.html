@@ -32,7 +32,7 @@
         <script>
             let counter = 3;
             setInterval(function() {
-                if (counter >= 0) {
+                if (counter > 0) {
                     counter--;
                     document.getElementById("counter").textContent = `Atualiza em: ${counter} segundos`;
                 } else {
