@@ -1,13 +1,15 @@
-2025/03/17-13:53:15.991 2e425 Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
-2025/03/17-13:53:15.992 2e425 Recovering log #147
-2025/03/17-13:53:15.998 2e425 Reusing old log /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000147.log 
-2025/03/17-13:53:17.353 2e425 Level-0 table #152: started
-2025/03/17-13:53:17.358 2e425 Level-0 table #152: 125392 bytes OK
-2025/03/17-13:53:17.360 2e425 Delete type=0 #147
-2025/03/17-13:53:17.360 2e425 Manual compaction at level-0 from '\x004\x00\x00\x00' @ 72057594037927935 : 1 .. '\x005\x00\x00\x00' @ 0 : 0; will stop at (end)
-2025/03/17-13:53:18.382 2e42a Compacting 1@1 + 1@2 files
-2025/03/17-13:53:18.416 2e42a Generated table #153@1: 60754 keys, 2168021 bytes
-2025/03/17-13:53:18.416 2e42a Compacted 1@1 + 1@2 files => 2168021 bytes
-2025/03/17-13:53:18.419 2e42a compacted to: files[ 0 0 1 0 0 0 0 ]
-2025/03/17-13:53:18.419 2e42a Delete type=2 #152
-2025/03/17-13:53:18.419 2e42a Delete type=2 #149
+2025/03/17-14:08:46.132 2f177 Reusing MANIFEST /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/MANIFEST-000001
+2025/03/17-14:08:46.132 2f177 Recovering log #180
+2025/03/17-14:08:46.145 2f177 Reusing old log /home/dan/Development/projects/project_whatsappchatbot/.wwebjs_auth/session/Default/IndexedDB/https_web.whatsapp.com_0.indexeddb.leveldb/000180.log 
+2025/03/17-14:08:47.632 2f17a Level-0 table #186: started
+2025/03/17-14:08:47.640 2f17a Level-0 table #186: 496678 bytes OK
+2025/03/17-14:08:47.642 2f17a Delete type=0 #180
+2025/03/17-14:08:47.642 2f17a Manual compaction at level-0 from '\x00;\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00<\x00\x00\x00' @ 0 : 0; will stop at (end)
+2025/03/17-14:08:48.683 2f179 Compacting 1@1 + 2@2 files
+2025/03/17-14:08:48.721 2f179 Generated table #187@1: 54303 keys, 2213697 bytes
+2025/03/17-14:08:48.741 2f179 Generated table #188@1: 25322 keys, 561338 bytes
+2025/03/17-14:08:48.741 2f179 Compacted 1@1 + 2@2 files => 2775035 bytes
+2025/03/17-14:08:48.744 2f179 compacted to: files[ 0 0 2 0 0 0 0 ]
+2025/03/17-14:08:48.744 2f179 Delete type=2 #183
+2025/03/17-14:08:48.744 2f179 Delete type=2 #186
+2025/03/17-14:08:48.744 2f179 Delete type=2 #182
