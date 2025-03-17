@@ -10,26 +10,15 @@ const sendMedia = require('./repositories/sendMedia');
 const { transferToAttendant } = require('./repositories/transferToAttendant');
 const checkAndHandleBadWords = require('./repositories/containsBadWords');
 
-// Função para salvar o QR Code
-const saveQrCode = (qr) => {
-    const qrCodeFolder = path.join('qrcode');
-    if (!fs.existsSync(qrCodeFolder)) {
-        fs.mkdirSync(qrCodeFolder);
-    }
-
-    const qrFilePath = path.join(qrCodeFolder, 'qrcode.png');
-
-    // Verificar se o arquivo QR já existe e removê-lo antes de criar um novo
-    if (fs.existsSync(qrFilePath)) {
-        fs.unlinkSync(qrFilePath); // Remove o arquivo existente
-    }
-
-    QRCode.toFile(qrFilePath, qr, { type: 'png' }, (err) => {
+// Função para gerar o QR Code e retorná-lo para o frontend
+const generateQrCode = (qr, res) => {
+    console.log('Escaneie este QR Code para conectar-se ao WhatsApp');
+    QRCode.toDataURL(qr, (err, url) => {
         if (err) {
-            console.error('Erro ao salvar o QR Code:', err);
-        } else {
-            console.log(`QR Code salvo em: ${qrFilePath}`);
+            console.error('Erro ao gerar o QR Code:', err);
+            return;
         }
+        res.send(`<h1>Escaneie o QR Code para conectar</h1><img src="${url}" alt="QR Code" />`);
     });
 };
 
@@ -60,8 +49,9 @@ const startBot = () => {
     });
 
     client.on('qr', (qr) => {
-        console.log('Escaneie este QR Code para conectar-se ao WhatsApp');
-        saveQrCode(qr);
+        // Aqui, ao invés de salvar o QR Code, enviamos ele para o frontend
+        // Passamos o objeto `res` do Express para a função de geração do QR Code
+        generateQrCode(qr, res);
     });
 
     client.on('ready', () => {
