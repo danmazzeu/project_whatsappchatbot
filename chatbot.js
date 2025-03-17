@@ -12,7 +12,7 @@ const checkAndHandleBadWords = require('./repositories/containsBadWords');
 
 // Função para salvar o QR Code
 const saveQrCode = (qr) => {
-    const qrCodeFolder = path.join('qrcode');
+    const qrCodeFolder = path.join(__dirname, 'qrcode');
     if (!fs.existsSync(qrCodeFolder)) {
         fs.mkdirSync(qrCodeFolder);
     }
