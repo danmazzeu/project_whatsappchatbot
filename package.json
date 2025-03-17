@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "express": "^4.21.2",
     "qrcode": "^1.5.4",
     "whatsapp-web.js": "^1.26.0"
   },

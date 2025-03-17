@@ -1,3 +1,4 @@
+const express = require('express');
 const { Client, LocalAuth } = require('whatsapp-web.js');
 const fs = require('fs');
 const path = require('path');
@@ -214,6 +215,19 @@ const startBot = () => {
         console.error('Erro ao inicializar o cliente:', err);
     });
 };
+
+// Express setup
+const app = express();
+
+// Set up a simple route for testing the server
+app.get('/', (req, res) => {
+    res.send('WhatsApp Bot is running');
+});
+
+// Start server
+app.listen(3000, () => {
+    console.log('Server is running on port 3000');
+});
 
 // Inicia o bot
 startBot();
