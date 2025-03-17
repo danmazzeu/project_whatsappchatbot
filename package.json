@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "whatsapp-web.js": "^1.26.0"
+  },
+  "name": "s",
+  "description": "",
+  "version": "1.0.0",
+  "main": "chatbot.js",
+  "scripts": {
+    "start": "node chatbot.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

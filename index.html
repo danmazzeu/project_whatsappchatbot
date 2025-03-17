@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <!-- Metatags -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="language" content="Portuguese">
+        <meta name="description" content="...">
+        <meta name="keywords" content="...">
+        <meta name="author" content="...">
+        <meta name="robots" content="nofollow, noindex">
+        <meta name="google" content="notranslate">
+
+        <!-- Social Metatags -->
+        <meta property="og:title" content="...">
+        <meta property="og:description" content="...">
+        <meta property="og:image" content="...">
+        <meta property="og:url" content="...">
+        <meta property="og:type" content="...">
+        <meta property="og:locale" content="pt_BR">
+
+        <!-- Favicon -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <!-- Title -->
+        <title>Title</title>
+
+        <!-- Styles -->
+        <link rel="stylesheet" href="...">
+
+        <!-- Scripts -->
+        <script defer src="..."></script>
+
+        <!-- Auto-refresh script -->
+        <script>
+            // Tempo inicial do contador em segundos (5 segundos)
+            let timeLeft = 5;
+
+            function updateCounter() {
+                // Atualiza o contador na página
+                document.getElementById("counter").innerText = `Página será recarregada em: ${timeLeft} segundos`;
+
+                // Decrementa o tempo restante
+                if (timeLeft <= 0) {
+                    // Recarrega a página quando o contador chegar a 0
+                    location.reload();
+                } else {
+                    timeLeft--;
+                }
+            }
+
+            // Atualiza o contador a cada segundo
+            setInterval(updateCounter, 1000);
+        </script>
+    </head>
+    <body>
+
+        <!-- QRCode -->
+        <img src="./qrcode/qrcode.png" style="width: 300px;">
+
+        <!-- Contador -->
+        <p id="counter">Página será recarregada em: 5 segundos</p>
+
+    </body>
+</html>
